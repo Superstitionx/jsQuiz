@@ -1,0 +1,770 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>퀴즈 모음</title>
+  <style>
+  /*-----------------------------------------------------------------*/
+  	.wrapper{
+		width : 1000px;
+		height : 600px;
+		margin : auto;
+	}
+	#menu{
+		width : 20%;
+		height : 100%;
+		position : relative;
+		float : left;
+		background : url("./res/menu.jpg");
+		background-size : 100% 100%;
+	}
+	#sq_area{
+		width : 80%;
+		height : 20%;
+		position : absolute;
+		left : 10%;
+		top : 30%;
+	}
+	#sq_area button{
+		width : 100%;
+		height : 30%;
+		background : url("./res/menu_but.png");
+		background-size : 100% 100%;
+		border-radius : 15%;
+	}
+	#wq_area{
+		width : 80%;
+		height : 20%;
+		position : absolute;
+		left : 10%;
+		top : 40%;
+	}
+	#wq_area button{
+		width : 100%;
+		height : 30%;
+		background : url("./res/menu_but.png");
+		background-size : 100% 100%;
+		border-radius : 15%;
+	}
+	#hm_area{
+		width : 80%;
+		height : 20%;
+		position : absolute;
+		left : 10%;
+		top : 60%;
+	}
+	#hm_area button{
+		width : 100%;
+		height : 30%;
+		background : url("./res/menu_but.png");
+		background-size : 100% 100%;
+		border-radius : 15%;
+	}
+	#content{
+		width : 80%;
+		height : 100%;
+		float : left;
+		position : relative;
+		line-height : 250%;
+		background : url("./res/main.jpg");
+		background-size : 100% 100%;
+	}
+	#select_quiz, #word_quiz, #hangman_quiz{
+		width : 100%;
+		height : 100%;
+		position : absolute;
+		left : 0px;
+		top : 0px;
+		display: none;
+	}
+	.quiz_area{
+		width : 600px;
+		height : 100%;
+		position : absolute;
+		float : left;
+		font-size : 100px;
+		font-weight : bold;
+		text-align : center;
+		line-height : 300px;
+	}
+	.info_area{
+		width : 200px;
+		height : 100%;
+		position : absolute;
+		left : 600px;
+		float : left;
+		margin : auto;
+		background : url("./res/menu2.jpg");
+		background-size : 100% 100%;
+	}
+	#select_close, #word_close, #hangman_close{
+		width : 20%;
+		height : 7%;
+		position : absolute;
+		left : 80%;
+		background : url("./res/close_button.jpg");
+		background-size : 100% 100%;
+		border-radius : 60%;
+	}
+/*-----------------------------------------------------------------*/
+/*-----------------------------------------------------------------*/
+	.question_sel_area{
+		width : 100%;
+		height : 60%;
+		background : url("./res/board.jpg");
+		background-size : 100% 100%;
+		line-height : 300%;
+		text-align : center;
+		font-size : 30px;
+		font-weight : bold;
+		color : white;
+	}
+	.input_sel_area{
+		width : 100%;
+		height : 40%;
+		background : url("./res/desk.jpg");
+	}
+	.count_area, .score_area{
+		width : 80%;
+		height: 18%;
+		font-size : 25px;
+		font-weight: bold;
+		text-align : center;
+		line-height : 200%;
+		background : url("./res/info.jpg");
+		background-size : 100% 100%;
+		color : white;
+	}
+	.count_area{
+		position : absolute;
+		top : 10%;
+		left : 10%;
+	}
+	.score_area{
+		position : absolute;
+		top : 30%;
+		left : 10%;
+	}
+/*-----------------------------------------------------------------*/
+	.question_word_area{
+		width : 100%;
+		height : 90%;
+		background : url("./res/whiteboard.jpg");
+		background-size : 100% 100%;
+		line-height : 300%;
+		text-align : center;
+		font-size : 39px;
+		font-weight : bold;
+		color : white;
+	}
+	.input_word_area{
+		width : 100%;
+		height : 10%;
+	}
+	#word_text{
+		width : 100%;
+		height : 95%;
+		font-size : 40px;
+		font-weight : bold;
+		float : left;
+		text-align: center;
+		position : relative;
+		background : black;
+		color : white;
+		border : 0px;
+	}
+	.stage_area{
+		width : 80%;
+		height: 10%;
+		font-size : 25px;
+		font-weight: bold;
+		text-align : center;
+		line-height : 200%;
+		position : absolute;
+		float : left;
+		top : 10%;
+		left : 10%;
+		background : url("./res/info.jpg");
+		background-size : 100% 100%;
+		color : white;
+	}
+	.heart_area{
+		width : 80%;
+		height: 20%;
+		font-size : 20px;
+		font-weight: bold;
+		text-align : center;
+		position : absolute;
+		float : left;
+		color : white;
+		top : 75%;
+		left : 10%;
+	}
+	.hint_area{
+		width : 80%;
+		height: 18%;
+		font-size : 20px;
+		font-weight: bold;
+		text-align : center;
+		line-height : 250%;
+		position : absolute;
+		display : none;
+		background : url("./res/info.jpg");
+		background-size : 100% 100%;
+		color : white;
+	}
+	.hint_button{
+		width : 80%;
+		height: 10%;
+		position : absolute;
+		float : left;
+		top : 65%;
+	}
+	.hint_button button{
+		width : 50%;
+		height : 100%;
+		font-size : 25px;
+		font-weight: bold;
+		text-align : center;
+		position : relative;
+		left : 10%;
+		float: left;
+		background : url("./res/hintbutton.jpg");
+		background-size : 100% 100%;
+	}
+	#w_hint1{
+		top : 25%;
+		left : 10%;
+	}
+	#w_hint2{
+		top : 45%;
+		left : 10%;
+	}
+/*-----------------------------------------------------------------*/
+	.hangman_area{
+		width : 600px;
+		height : 100%;
+		position : absolute;
+		float : left;
+		font-weight : bold;
+		text-align : center;
+	}
+	.hang_man{
+		width : 100%;
+		height : 60%;
+	}
+	.output_area{
+		width : 100%;
+		height : 10%;
+		text-align : center;
+		font-size : 30px;
+		background : white;
+	}
+	.keyboard_area{
+		width : 100%;
+		height : 30%;
+		position : absolute;
+	}
+	#h_hint1{
+		top : 25%;
+		left : 10%;
+	}
+	#h_hint2{
+		top : 45%;
+		left : 10%;
+	}
+	#topic{
+		width : 80%;
+		height: 10%;
+		font-size : 25px;
+		font-weight: bold;
+		text-align : center;
+		line-height : 200%;
+		position : absolute;
+		float : left;
+		top : 10%;
+		left : 10%;
+		background : url("./res/info.jpg");
+		background-size : 100% 100%;
+		color : white;
+	}
+	#next_but{
+		width : 80%;
+		height : 10%;
+		position : absolute;
+		left : 10%;
+		top : 80%;
+		background : url("./res/nextbut.png");
+		background-size : 100% 100%;
+	}
+  </style>
+  <script src = "./js/Button.js"></script>
+  <script src = "./js/Hp.js"></script>
+  <script src = "./js/Data.js"></script>
+  <script src = "./js/random.js"></script>
+  <script src = "./js/Keyboard.js"></script>
+  <script> 
+/*----------------------------------------------------------------- 초기화 영역*/	
+	var menu, content; // 전체적인 div 초기화
+	var sq_area, wq_area, hm_area
+	var w_category_but1, w_category_but2;
+	var hm_category_but1, hm_category_but2;
+	/*----------------------------------------------------------------- 객관식*/
+	var select_quiz, sel_area, question_sel_area, button_area; // select quiz 구성요소 div 초기화
+	var q_score, q_count;
+	var button_Array = []; // 버튼 선언용 배열
+	var q_arr = []; // 퀴즈 번호 저장할 배열
+	var b_arr = []; // 버튼을 저장할 배열
+	var question_count = 0;
+	var question_number = 0;
+	var question_choice = 0;
+	var choice_array;
+	var score = 0; // 점수
+	/*----------------------------------------------------------------- 객관식*/
+	/*----------------------------------------------------------------- 단어*/
+	var word_quiz, word_area, question_word_area, word_text;
+	var w_heart, w_stage, w_hint1, w_hint2, hp_arr = [];
+	var count = 0;
+	var word_length = 10;
+	var wordquizArray = [];
+	/*----------------------------------------------------------------- 단어*/
+	/*----------------------------------------------------------------- HangMan*/
+	var hangman_quiz, hang_man, output, keyboard, h_hint1, h_hint2, topic;
+	var h_arr = [], hb_arr = [], hangmanArray = [];
+	var p_cnt = 0;
+	/*----------------------------------------------------------------- HangMan*/
+  	function init(){
+	/*-----------------------------------------------------------------*/
+		menu = document.getElementById("menu");
+		sq_area = document.getElementById("sq_area");
+		wq_area = document.getElementById("wq_area");
+		hm_area = document.getElementById("hm_area");
+		content = document.getElementById("content");
+	/*-----------------------------------------------------------------*/
+		select_quiz = document.getElementById("select_quiz");
+		button_area = document.getElementById("button_area");
+		question_sel_area = document.getElementById("question_sel_area");
+		sel_area = document.getElementById("sel_area");
+	/*-----------------------------------------------------------------*/
+		q_score = document.getElementById("q_score");
+		q_count = document.getElementById("q_count");
+	/*-----------------------------------------------------------------*/
+		word_quiz = document.getElementById("word_quiz");
+		word_area = document.getElementById("word_area");
+		question_word_area = document.getElementById("question_word_area");
+		word_text = document.getElementById("word_text");
+		w_heart = document.getElementById("w_heart");
+		w_stage = document.getElementById("w_stage");
+		w_hint1 = document.getElementById("w_hint1");
+		w_hint2 = document.getElementById("w_hint2");
+	/*-----------------------------------------------------------------*/
+		hangman_quiz = document.getElementById("hangman_quiz");
+		hang_man = document.getElementById("hang_man");
+		output = document.getElementById("output");
+		keyboard = document.getElementById("keyboard");
+		h_hint1 = document.getElementById("h_hint1");
+		h_hint2 = document.getElementById("h_hint2");
+		topic = document.getElementById("topic");
+	}
+/*----------------------------------------------------------------- 객관식 퀴즈 영역*/
+	function createQuestion(){
+		var str = "";
+		var x = q_arr[question_count];
+		if (question_count >= question_number){
+			var str2 = "";
+			sel_area.style.background = "url('./res/end.jpg')";
+			sel_area.style.backgroundSize = 100 + "%" + 100 + "%";
+			sel_area.innerText = "";
+			question_count--;
+			createInfo();
+		}
+		str += "문제" + (question_count + 1) + "<br/>";
+		str += choice_array[x][0];
+		question_sel_area.innerHTML = str;	
+	}
+	function createInfo(){
+		var s_str = "";
+		var c_str = "";
+		c_str += "문제 / 문제수 <br/>" + (question_count+1) + " / " + question_number;
+		s_str += "점수<br/>" + score + " 점";
+		q_score.innerHTML = s_str;
+		q_count.innerHTML = c_str;
+	}
+	function createButton(){
+		for (var i = 0; i < 4 ; i++){
+			var button = new Button(button_area,260,80,"",i);
+			button_Array.push(button);
+		}
+	}
+
+	function buttonSetting(){
+		b_arr[0] = q_arr[question_count];
+		random_setting1(b_arr,q_arr);
+		random_setting2(b_arr);
+		for (var i = 0; i < button_Array.length; i++){
+			button_Array[i].button.innerText = choice_array[b_arr[i]][1];
+		}
+	}
+
+	function score_count(but){
+		var str = but.button.innerText;
+		if (str == choice_array[q_arr[question_count]][1]){
+			score += 10;
+		}
+	}
+	function show(but){
+		var str = but.button.innerText;
+		var str2 = "";
+		if (str == choice_array[q_arr[question_count]][1]){
+			str2 += "정답! " 
+			question_sel_area.innerHTML = str2;
+		}else{
+			str2 += "오답!<br/>";
+			str2 += "답은 : " + choice_array[q_arr[question_count]][1];
+			question_sel_area.innerHTML = str2;
+		}
+	}
+	function setting(){
+		question_count++;
+		createQuestion();
+		buttonSetting();
+		createInfo();
+	}
+/*----------------------------------------------------------------- 단어 퀴즈 영역*/
+	function createWord(){
+		var x = q_arr[question_count]
+		if (question_count == wordquizArray.length){
+			var str = "";
+			word_area.style.background = "url('./res/win.jpg')";
+			word_area.style.backgroundSize = 100 + "%" + 100 + "%";
+			word_area.innerHTML = str;
+		}
+		var img = document.createElement("img")
+		img.src = wordquizArray[x][0];
+		img.style.position = "absolute";
+		img.style.top = 5 + "%";
+		img.style.left = 5 + "%";
+		img.style.width = 90 + "%";
+		img.style.height = 480 + "px";
+		question_word_area.appendChild(img);
+	}
+	function createHint(){
+		w_hint1.style.display = "none";
+		w_hint2.style.display = "none";
+		var x = q_arr[question_count];
+		w_hint1.innerHTML = "Hint 1<br/>" + wordquizArray[x][2];
+		w_hint2.innerHTML = "Hint 2<br/>" + wordquizArray[x][3];
+	}
+	function w_createHint1(){
+		if (confirm("힌트를 누르면 Life가 1차감 됩니다. 누르시겠습니까?")){
+			w_hint1.style.display = "block";
+			hp_arr[count-1].setBg("none");
+			count--;
+			if (count <= 0){
+				var str = "";
+				word_area.style.background = "url('./res/over.png')";
+				word_area.style.backgroundSize = 100 + "%" + 100 + "%";
+				str += "";
+				word_area.innerHTML = str;
+			}
+		}
+	}
+	function w_createHint2(){
+		if (confirm("힌트를 누르면 Life가 1차감 됩니다. 누르시겠습니까?")){
+			w_hint2.style.display = "block";
+			hp_arr[count-1].setBg("none");
+			count--;
+			if (count <= 0){
+				var str = "";
+				word_area.style.background = "url('./res/over.png')";
+				word_area.style.backgroundSize = 100 + "%" + 100 + "%";
+				str += "";
+				word_area.innerHTML = str;
+			}
+		}
+	}
+	function createHeart(){
+		var str = "";
+		str += "Life </br>";
+		w_heart.innerHTML = str;
+		for (var i = 0; i < 8 ; i++){
+			var hp = new Hp(w_heart);
+			hp_arr.push(hp);
+			count++;
+		}
+	}
+	function create_info(){
+		var c_str = "";
+		c_str += "STAGE : " + (question_count + 1);
+		w_stage.innerHTML = c_str;
+	}
+	function input_word(){
+		var key = event.keyCode;
+		if (key == 13){
+			if (word_text.value == wordquizArray[q_arr[question_count]][1]){
+				question_count++;
+				createWord();
+				create_info();
+				createHint();
+			}else{
+				hp_arr[count-1].setBg("none");
+				count--;
+				if (count <= 0){
+					var str = "";
+					word_area.style.background = "url('./res/over.png')";
+					word_area.style.backgroundSize = 100 + "%" + 100 + "%";
+					str += "";
+					word_area.innerHTML = str;
+				}
+			}
+			word_text.value = "";
+		}
+	}
+/*-----------------------------------------------------------------*/
+/*----------------------------------------------------------------- HangMan*/
+	function createHangman(){
+		hang_man.style.background = "url('./res/hm/hm0.png')";
+		hang_man.style.backgroundSize = 100 + "%" + 100 + "%";
+	}
+
+	function createHword(){
+		var x = q_arr[question_count];
+		var str = "";
+		h_arr = hangmanArray[x][0].split('');
+		for (var i = 0; i < h_arr.length ; i++ ){
+			hb_arr[i] = "?"
+			str += hb_arr[i] + " ";
+		}
+		output.innerHTML = str;
+	}
+
+	function createKeyboard(){
+		for (var i = 0; i < 30 ; i++){
+			if (i < 26){
+				var kb = new Keyboard(keyboard,60,60,String.fromCharCode(97+i));
+			}else{
+				var kb = new Keyboard(keyboard,60,60,"없음");
+			}	
+		}
+	}
+	function pushKeyboard(but){
+		var str = but.button.innerText;
+		var str2 = "";
+		var cor = 0;
+		for (var i = 0; i < h_arr.length ; i++ ){
+			if (str == h_arr[i]){
+				hb_arr[i] = str;
+				cor = 1;
+			}
+			str2 += hb_arr[i] + " " ;
+		}
+		if (cor == 0){
+			alert("해당 글자는 단어에 없습니다");
+			p_cnt++;
+			hang_man.style.background = "url('./res/hm/hm"+p_cnt+".png')";
+			hang_man.style.backgroundSize = 100 + "%" + 100 + "%";
+			if (p_cnt == 3){
+				alert("Game Over!!");
+			}
+		}
+		output.innerHTML = str2;
+		if (equalArray(hb_arr,h_arr)){
+			hang_man.style.background = "url('./res/hm/win.png')";
+			hang_man.style.backgroundSize = 100 + "%" + 100 + "%";
+		}
+	}
+
+	function equalArray(array1,array2){
+		var cnt = 0;
+		if (array1.length != array2.length){
+			return false;
+		}
+		for (var i = 0; i < array1.length; i++){
+			if (array1[i] == array2[i]){
+				cnt++;
+			}
+		}
+		if (cnt == array1.length && cnt == array2.length){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	function h_createHint(){
+		h_hint1.style.display = "none";
+		h_hint2.style.display = "none";
+		var x = q_arr[question_count];
+		h_hint1.innerHTML = "Hint 1<br/>" + hangmanArray[x][1];
+		h_hint2.innerHTML = "Hint 2<br/> 한글로 : " + hangmanArray[x][2];
+	}
+	function h_createHint1(){
+		h_hint1.style.display = "block";
+	}
+	function h_createHint2(){
+		h_hint2.style.display = "block";
+	}
+	function nextPage(){
+		question_count++;
+		createHangman();
+		createHword();
+		h_createHint();
+	}
+/*----------------------------------------------------------------- */
+/*----------------------------------------------------------------- 창 닫기/열기*/
+	function open_sel_window(){
+		select_quiz.style.display = "block";
+		question_choice = prompt("퀴즈 주제를 선택해 주세요 ( javascript = 1 / java & oracle = 2 )");
+		if (question_choice == 1){
+			choice_array = javascript;
+		}else if(question_choice == 2){
+			choice_array = java_oracle;
+		}
+		question_number = prompt("문제 수를 입력하세요 해당 주제의 문제 수는 " + choice_array.length +"개 입니다.");
+		q_arr = mix_random(choice_array);
+		createButton();
+		createQuestion();
+		buttonSetting();
+		createInfo();
+	}
+	function close_sel_window(){
+		select_quiz.style.display = "none";
+		location.reload();
+	}
+	function choice_wordquiz(){
+		w_category_but1 = document.createElement("button");
+		w_category_but2 = document.createElement("button");
+		w_category_but1.innerText = "노래퀴즈";
+		w_category_but2.innerText = "그림퀴즈";
+		w_category_but1.addEventListener("click",function(){
+			wordquizArray = song_quiz;
+			open_word_window(wordquizArray);
+		});
+		w_category_but2.addEventListener("click",function(){
+			wordquizArray = pic_quiz;
+			open_word_window(wordquizArray);
+		});
+		wq_area.appendChild(w_category_but1);
+		wq_area.appendChild(w_category_but2);
+	}
+	function open_word_window(array){
+		word_quiz.style.display = "block";
+		q_arr = mix_random(array)
+		createWord();
+		create_info();
+		createHeart();
+		createHint();
+	}
+	function close_word_window(){
+		word_quiz.style.display = "none";
+		location.reload();
+	}
+	function choice_hangman(){
+		hm_category_but1 = document.createElement("button");
+		hm_category_but2 = document.createElement("button");
+		hm_category_but1.innerText = "과일";
+		hm_category_but2.innerText = "나라";
+		hm_category_but1.addEventListener("click",function(){
+			hangmanArray = fruits;
+			open_hangman_window(hangmanArray);
+		});
+		hm_category_but2.addEventListener("click",function(){
+			hangmanArray = nations;
+			open_hangman_window(hangmanArray);
+		});
+		hm_area.appendChild(hm_category_but1);
+		hm_area.appendChild(hm_category_but2);
+	}
+	function open_hangman_window(array){
+		hangman_quiz.style.display = "block";
+		q_arr = mix_random(array);
+		if (array == fruits){
+			topic.innerText = "주제 : 과일";
+		}
+		if (array == nations){
+			topic.innerText = "주제 : 나라";
+		}
+		createHangman();
+		createHword();
+		createKeyboard();
+		h_createHint();
+	}
+	function close_hangman_window(){
+		hangman_quiz.style.display = "none";
+		location.reload();
+	}
+/*-----------------------------------------------------------------*/
+	addEventListener("load",function(){
+		init();
+	});
+  </script>
+
+ </head>
+ <body>
+	<div id="" class="wrapper">
+		<div id="menu" class="">
+			<div id = "sq_area">
+				<button id = "select_but" onClick = "open_sel_window()">객관식 퀴즈</button>
+			</div>
+			<div id = "wq_area">
+				<button id = "word_but" onClick = "choice_wordquiz()">단어 퀴즈</button>
+			</div>
+			<div id = "hm_area">
+				<button id = "hangman_but" onClick = "choice_hangman()">HangMan</button>
+			</div>
+		</div>
+		<div id="content" class="">
+			<div id="select_quiz" class="">
+				<div class = "quiz_area" id = "sel_area">
+					<div class = "question_sel_area" id = "question_sel_area">
+					</div>
+					<div class = "input_sel_area" id = "button_area"></div>
+				</div>
+				<div class = "info_area">
+					<button id = "select_close" onClick = "close_sel_window()"></button>
+					<div class = "count_area" id = "q_count"></div>
+					<div class = "score_area" id = "q_score"></div>
+				</div>
+			</div>
+			<div id="word_quiz" class="">
+				<div class = "quiz_area" id = "word_area">
+					<div class = "question_word_area" id = "question_word_area"></div>
+					<div class = "input_word_area" id = "">
+						<input type = "text" id = "word_text" onKeyUp = "input_word()" placeholder = "영어는 대문자로.."/>
+					</div>
+				</div>
+				<div class = "info_area">
+					<button id = "word_close" onClick = "close_word_window()"></button>
+					<div class = "stage_area" id = "w_stage"></div>
+					<div class = "hint_area" id = "w_hint1"></div>
+					<div class = "hint_area" id = "w_hint2"></div>
+					<div class="hint_button">
+						<button onClick = "w_createHint1()"></button>
+						<button onClick = "w_createHint2()"></button>
+					</div>
+					<div class = "heart_area" id = "w_heart"></div>
+					<div></div>
+				</div>
+			</div>
+			<div id="hangman_quiz" class="">
+				<div class = "hangman_area" id = "hangman_area">
+					<div class = "hang_man" id = "hang_man"></div>
+					<div class = "output_area" id = "output"></div>
+					<div class = "keyboard_area" id = "keyboard"></div>
+				</div>
+				<div class = "info_area">
+					<button id = "hangman_close" onClick = "close_hangman_window()"></button>
+					<div id = "topic"></div>
+					<div class = "hint_area" id = "h_hint1"></div>
+					<div class = "hint_area" id = "h_hint2"></div>
+					<div class="hint_button">
+						<button onClick = "h_createHint1()"></button>
+						<button onClick = "h_createHint2()"></button>
+					</div>
+					<button id = "next_but" onClick = "nextPage()"></button>
+				</div>
+			</div>
+		</div>
+	</div>
+ </body>
+</html>
